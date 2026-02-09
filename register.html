@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - DentalConnect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="register.css">
+</head>
+
+<body>
+
+    <div class="wizard-container">
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-step active" id="progress-1">1</div>
+            <div class="progress-step" id="progress-2">2</div>
+            <div class="progress-step" id="progress-3">3</div>
+            <div class="progress-step" id="progress-4">4</div>
+        </div>
+
+        <!-- Step 1: Team Setup -->
+        <div class="step-content active" id="step-1">
+            <h2>Configura tu Espacio</h2>
+            <p class="subtitle">Selecciona cómo trabajarás en la plataforma</p>
+
+            <div class="team-options">
+                <div class="team-card" id="card-solo" onclick="selectTeam('solo')">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    <h3>Individual</h3>
+                    <p>Un solo especialista y su asistente.</p>
+                </div>
+                <div class="team-card" id="card-team" onclick="selectTeam('team')">
+                    <i class="fa-solid fa-users-medical"></i>
+                    <h3>Equipo</h3>
+                    <p>Dos o más especialistas compartiendo clínica.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: User Details -->
+        <div class="step-content" id="step-2">
+            <h2>Tus Datos</h2>
+            <p class="subtitle">Información básica para tu perfil profesional</p>
+
+            <div class="form-group">
+                <label>Nombre Completo</label>
+                <input type="text" id="input-name" placeholder="Ej. Dr. Juan Pérez">
+            </div>
+            <div class="form-group">
+                <label>Correo Electrónico</label>
+                <input type="email" id="input-email" placeholder="correo@ejemplo.com">
+            </div>
+            <div class="form-group">
+                <label>Token de Invitación (Opcional)</label>
+                <input type="text" id="input-token" placeholder="Si tienes un código, ingrésalo aquí">
+            </div>
+        </div>
+
+        <!-- Step 3: Password Security -->
+        <div class="step-content" id="step-3">
+            <h2>Seguridad de la Cuenta</h2>
+            <p class="subtitle">Crea una contraseña segura para proteger los datos clínicos</p>
+
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" id="input-pass" placeholder="Crear contraseña">
+            </div>
+
+            <div class="password-requirements">
+                <div class="req-item" id="req-length"><i class="fa-regular fa-circle"></i> Mínimo 8 caracteres</div>
+                <div class="req-item" id="req-upper"><i class="fa-regular fa-circle"></i> Al menos una mayúscula</div>
+                <div class="req-item" id="req-special"><i class="fa-regular fa-circle"></i> Al menos un carácter
+                    especial (!@#$)</div>
+                <div class="req-item" id="req-seq"><i class="fa-regular fa-circle"></i> No usar números en secuencia
+                    (123...)</div>
+            </div>
+        </div>
+
+        <!-- Step 4: Privacy Notice (NOM) -->
+        <div class="step-content" id="step-4">
+            <h2>Aviso de Privacidad</h2>
+            <p class="subtitle">Cumplimiento con NOM-004 y NOM-024 SSA3</p>
+
+            <div class="privacy-box">
+                <p><strong>AVISO DE PRIVACIDAD INTEGRAL</strong></p>
+                <p>DentalConnect (en adelante, "El Responsable"), con domicilio fiscal ubicado en [INSERTAR DOMICILIO
+                    COMPLETO DE LA CLÍNICA O DEL DESARROLLADOR], es el responsable del uso y protección de sus datos
+                    personales, y al respecto le informamos lo siguiente:</p>
+
+                <p><strong>1. ¿Para qué fines utilizaremos sus datos personales?</strong></p>
+                <p>Los datos personales que recabamos de usted los utilizaremos para las siguientes finalidades que son
+                    necesarias para el servicio que solicita:</p>
+                <ul style="padding-left: 20px; list-style-type: disc;">
+                    <li><strong>Gestión Clínica y Expediente Electrónico:</strong> Creación, estudio, análisis,
+                        actualización y conservación del expediente clínico dental, de conformidad con la
+                        NOM-004-SSA3-2012.</li>
+                    <li><strong>Prestación de Servicios de Salud:</strong> Diagnóstico, tratamiento odontológico,
+                        seguimiento de casos clínicos, cirugía y rehabilitación bucal.</li>
+                    <li><strong>Agenda y Contacto:</strong> Gestión de citas, recordatorios automatizados y comunicación
+                        directa médico-paciente a través de la plataforma DentalConnect.</li>
+                    <li><strong>Facturación y Cobro:</strong> Emisión de comprobantes fiscales y procesamiento de pagos
+                        por los servicios prestados.</li>
+                    <li><strong>Cumplimiento Normativo:</strong> Asegurar la trazabilidad y seguridad de la información
+                        de salud conforme a la NOM-024-SSA3-2012 (Sistemas de Registro Electrónico para la Salud).</li>
+                </ul>
+
+                <p>De manera adicional, utilizaremos su información personal para las siguientes finalidades secundarias
+                    que no son necesarias para el servicio solicitado, pero que nos permiten y facilitan brindarle una
+                    mejor atención:</p>
+                <ul style="padding-left: 20px; list-style-type: disc;">
+                    <li>Envío de información sobre promociones, nuevos servicios o productos dentales.</li>
+                    <li>Encuestas de calidad y servicio.</li>
+                </ul>
+                <p>En caso de que no desee que sus datos personales sean tratados para estos fines secundarios, usted
+                    puede presentar desde este momento un escrito vía correo electrónico a [CORREO DE CONTACTO ARCO]
+                    manifestando lo anterior.</p>
+
+                <p><strong>2. ¿Qué datos personales utilizaremos para estos fines?</strong></p>
+                <p>Para llevar a cabo las finalidades descritas en el presente aviso de privacidad, utilizaremos los
+                    siguientes datos personales:</p>
+                <ul style="padding-left: 20px; list-style-type: disc;">
+                    <li><strong>Datos de Identificación:</strong> Nombre completo, edad, fecha de nacimiento, firma
+                        autógrafa o digital, CURP, identificación oficial.</li>
+                    <li><strong>Datos de Contacto:</strong> Domicilio, teléfono particular, teléfono celular, correo
+                        electrónico.</li>
+                    <li><strong>Datos Patrimoniales o Financieros:</strong> Información fiscal para facturación, datos
+                        de tarjetas bancarias (si aplica cobro directo en plataforma).</li>
+                </ul>
+
+                <p><strong>Datos Personales Sensibles</strong></p>
+                <p>Además de los datos personales mencionados anteriormente, para las finalidades informadas en el
+                    presente aviso de privacidad utilizaremos los siguientes datos personales considerados como
+                    sensibles, que requieren de especial protección:</p>
+                <ul style="padding-left: 20px; list-style-type: disc;">
+                    <li><strong>Datos de Salud (Historial Clínico):</strong> Antecedentes heredo-familiares,
+                        antecedentes patológicos (enfermedades, alergias, cirugías previas), odontogramas, radiografías,
+                        fotografías intraorales y extraorales, diagnósticos y planes de tratamiento.</li>
+                </ul>
+                <p>El tratamiento de estos datos sensibles se realiza bajo estrictas medidas de seguridad, garantizando
+                    su confidencialidad conforme a la legislación aplicable y los principios éticos de la práctica
+                    odontológica.</p>
+
+                <p><strong>3. Transferencia de Datos Personales</strong></p>
+                <p>Le informamos que sus datos personales pueden ser compartidos dentro y fuera del país con las
+                    siguientes personas, empresas, organizaciones y autoridades distintas a nosotros, para los
+                    siguientes fines:</p>
+                <ul style="padding-left: 20px; list-style-type: disc;">
+                    <li><strong>Aseguradoras:</strong> Gestión de pago directo o reembolso de gastos médicos dentales.
+                        (Requiere consentimiento: Sí)</li>
+                    <li><strong>Especialistas Externos / Laboratorios:</strong> Interconsultas, fabricación de prótesis
+                        o análisis clínicos requeridos para su tratamiento. (Requiere consentimiento: Sí)</li>
+                    <li><strong>Autoridades Sanitarias (COFEPRIS/Secretaría de Salud):</strong> En caso de requerimiento
+                        oficial o por temas de vigilancia epidemiológica. (Requiere consentimiento: No)</li>
+                </ul>
+
+                <p><strong>4. ¿Cómo puede acceder, rectificar o cancelar sus datos personales, u oponerse a su uso
+                        (Derechos ARCO)?</strong></p>
+                <p>Usted tiene derecho a conocer qué datos personales tenemos de usted, para qué los utilizamos y las
+                    condiciones del uso que les damos (Acceso). Asimismo, es su derecho solicitar la corrección de su
+                    información personal en caso de que esté desactualizada, sea inexacta o incompleta (Rectificación);
+                    que la eliminemos de nuestros registros o bases de datos cuando considere que la misma no está
+                    siendo utilizada conforme a los principios, deberes y obligaciones previstas en la normativa
+                    (Cancelación); así como oponerse al uso de sus datos personales para fines específicos (Oposición).
+                    Estos derechos se conocen como derechos ARCO.</p>
+                <p>Para el ejercicio de cualquiera de los derechos ARCO, usted deberá presentar la solicitud respectiva
+                    a través del siguiente medio:</p>
+                <p><strong>Correo electrónico:</strong> [INSERTAR CORREO, EJ: privacidad@dentalconnect.mx]</p>
+                <p><strong>Domicilio:</strong> [INSERTAR DOMICILIO]</p>
+                <p>Su solicitud deberá contener: (I) Nombre del titular y medio para comunicarle la respuesta; (II)
+                    Documentos que acrediten su identidad; (III) Descripción clara de los datos personales respecto de
+                    los que se busca ejercer el derecho; y (IV) Cualquier otro elemento que facilite la localización de
+                    los datos.</p>
+                <p><strong>Nota Importante sobre Cancelación:</strong> Conforme a la NOM-004-SSA3-2012, el expediente
+                    clínico debe conservarse por un periodo mínimo de 5 años a partir del último acto médico. Por lo
+                    tanto, la cancelación total de los datos de salud puede estar restringida por esta obligación legal
+                    durante dicho periodo.</p>
+
+                <p><strong>5. Uso de tecnologías de rastreo en nuestro portal de Internet</strong></p>
+                <p>Le informamos que en nuestra página de Internet utilizamos cookies, web beacons y otras tecnologías a
+                    través de las cuales es posible monitorear su comportamiento como usuario de Internet, así como
+                    brindarle un mejor servicio y experiencia de usuario al navegar en nuestra página.</p>
+
+                <p><strong>6. Medidas de Seguridad</strong></p>
+                <p>DentalConnect implementa medidas de seguridad administrativas, físicas y técnicas (cifrado de datos,
+                    control de accesos, respaldos) alineadas a la NOM-024-SSA3-2012 para proteger sus datos personales
+                    contra daño, pérdida, alteración, destrucción o el uso, acceso o tratamiento no autorizado.</p>
+
+                <p><strong>7. Cambios al Aviso de Privacidad</strong></p>
+                <p>El presente aviso de privacidad puede sufrir modificaciones, cambios o actualizaciones derivadas de
+                    nuevos requerimientos legales; de nuestras propias necesidades por los servicios que ofrecemos; de
+                    nuestras prácticas de privacidad; o por otras causas. Nos comprometemos a mantenerlo informado sobre
+                    los cambios que pueda sufrir el presente aviso de privacidad, a través de: [INSERTAR MEDIO, EJ:
+                    Nuestro sitio web o notificación en la App DentalConnect].</p>
+
+                <p><strong>Última actualización:</strong> [FECHA ACTUAL]</p>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="check-privacy" style="width:auto;">
+                <label for="check-privacy" style="margin:0; font-weight:normal;">He leído y acepto el Aviso de
+                    Privacidad y los Términos de Uso.</label>
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="nav-buttons">
+            <button class="btn btn-secondary" id="prevBtn" onclick="prevStep()">Anterior</button>
+            <button class="btn btn-primary" id="nextBtn" onclick="nextStep()">Siguiente</button>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="login.html" style="font-size: 0.9rem; color: #666; text-decoration: none;">¿Ya tienes cuenta?
+                Iniciar Sesión</a>
+        </div>
+
+    </div>
+
+    <script src="register.js"></script>
+</body>
+
+</html>
