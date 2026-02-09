@@ -4,567 +4,577 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DentalConnect - Dashboard</title>
+    <title>DentalConnect SaaS - Gestión Dental Inteligente</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Poppins:wght@300;500;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos específicos para Landing Page que sobreescriben o complementan style.css */
+        body.landing-page {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            overflow-y: auto;
+            /* Permitir scroll */
+            height: auto;
+            display: block;
+            /* Reset flex de login/dashboard si aplica */
+        }
+
+        .landing-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo-container {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero-section {
+            padding: 100px 50px;
+            text-align: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 80px 50px;
+            background: #fff;
+        }
+
+        .feature-card {
+            padding: 30px;
+            border-radius: 20px;
+            background: #f9f9f9;
+            transition: transform 0.3s;
+            text-align: left;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .pricing-section {
+            padding: 100px 50px;
+            text-align: center;
+            background: linear-gradient(180deg, #fff 0%, #f0f4f8 100%);
+        }
+
+        .pricing-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            width: 300px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border: 2px solid var(--primary-color);
+            background: white;
+            box-shadow: 0 20px 40px rgba(0, 180, 216, 0.15);
+        }
+
+        .price-tag {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin: 20px 0;
+        }
+
+        .price-tag span {
+            font-size: 1rem;
+            color: #888;
+            font-weight: 400;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 10px 20px rgba(0, 180, 216, 0.3);
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(0, 180, 216, 0.4);
+            background: var(--secondary-color);
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .badge-popular {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--secondary-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* --- CAROUSEL STYLES --- */
+        .carousel-container {
+            position: relative;
+            width: 1000px;
+            height: 600px;
+            margin: 60px auto 0;
+            /* Margin top to separate from text */
+            background: #f5f5f5;
+            box-shadow: 0 30px 50px #dbdbdb;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .slide .item {
+            width: 200px;
+            height: 300px;
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);
+            border-radius: 20px;
+            box-shadow: 0 30px 50px #505050;
+            display: inline-block;
+            transition: 0.5s;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 1st and 2nd element: Full Background (Hero Effect) */
+        .slide .item:nth-child(1),
+        .slide .item:nth-child(2) {
+            top: 0;
+            left: 0;
+            transform: translate(0, 0);
+            border-radius: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 3rd, 4th, 5th element: Cards to the right */
+        .slide .item:nth-child(3) {
+            left: 50%;
+        }
+
+        .slide .item:nth-child(4) {
+            left: calc(50% + 220px);
+        }
+
+        .slide .item:nth-child(5) {
+            left: calc(50% + 440px);
+        }
+
+        /* Remaining elements: Hidden */
+        .slide .item:nth-child(n + 6) {
+            left: calc(50% + 660px);
+            opacity: 0;
+        }
+
+        /* Content Text */
+        .item .content {
+            position: absolute;
+            top: 50%;
+            left: 100px;
+            width: 350px;
+            text-align: left;
+            color: #fff;
+            transform: translate(0, -50%);
+            display: none;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .slide .item:nth-child(2) .content {
+            display: block;
+        }
+
+        .content .name {
+            font-size: 40px;
+            text-transform: uppercase;
+            font-weight: 700;
+            opacity: 0;
+            animation: showcontent 1s ease-in-out 1 forwards;
+            color: #e0f7fa;
+        }
+
+        .content .des {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: showcontent 1s ease-in-out 0.3s 1 forwards;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .content button {
+            padding: 12px 25px;
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+            animation: showcontent 1s ease-in-out 0.6s 1 forwards;
+            background-color: #00b4d8;
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 180, 216, 0.4);
+            transition: 0.3s;
+        }
+
+        .content button:hover {
+            background-color: #0077b6;
+            transform: scale(1.05);
+        }
+
+        @keyframes showcontent {
+            from {
+                opacity: 0;
+                transform: translate(0, 100px);
+                filter: blur(33px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(0, 0);
+                filter: blur(0);
+            }
+        }
+
+        /* Navigation Buttons */
+        .carousel-buttons {
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            bottom: 30px;
+            z-index: 100;
+        }
+
+        .carousel-buttons button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: 0.3s;
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            font-size: 18px;
+        }
+
+        .carousel-buttons button:hover {
+            background: #00b4d8;
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        /* Fix Pricing Button Overflow */
+        .pricing-card .cta-button {
+            padding: 12px 10px;
+            /* Reduced horizontal padding */
+            width: 100%;
+            box-sizing: border-box;
+            white-space: nowrap;
+            /* Prevent breaking if possible, or allow? */
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
 </head>
 
-<body>
+<body class="landing-page">
 
-    <!-- Vertical Glass Navigation -->
-    <nav class="dashboard-sidebar">
-        <ul class="navbar" id="navList">
-            <li class="nav-item active" data-target="inicio">
-                <a href="#" class="nav-content">
-                    <span class="icon"><i class="fa-solid fa-house"></i></span>
-                    <span class="text">Inicio</span>
-                </a>
-            </li>
-            <li class="nav-item" data-target="pacientes">
-                <a href="#" class="nav-content">
-                    <span class="icon"><i class="fa-solid fa-users"></i></span>
-                    <span class="text">Pacientes</span>
-                </a>
-            </li>
-            <li class="nav-item" data-target="tratamientos">
-                <a href="#" class="nav-content">
-                    <span class="icon"><i class="fa-solid fa-notes-medical"></i></span>
-                    <span class="text">Tratamientos</span>
-                </a>
-            </li>
-            <li class="nav-item" data-target="publicidad">
-                <a href="#" class="nav-content">
-                    <span class="icon"><i class="fa-solid fa-bullhorn"></i></span>
-                    <span class="text">Publicidad</span>
-                </a>
-            </li>
-            <li class="nav-item" data-target="configuracion">
-                <a href="#" class="nav-content">
-                    <span class="icon"><i class="fa-solid fa-gear"></i></span>
-                    <span class="text">Configuración</span>
-                </a>
-            </li>
-            <li class="nav-item" onclick="window.location.href='login.html'">
-                <a href="#" class="nav-content">
-                    <span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span>
-                    <span class="text">Salir</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-
-    <!-- Main Content -->
-    <main>
-        <!-- SECCIÓN: INICIO (Updated to Card Layout) -->
-        <div id="inicio" class="section active">
-            <h2 class="page-title">Citas para hoy</h2>
-            <!-- Dashboard: Appointment List with Max Width for Alignment -->
-            <div class="appointment-list" style="max-width: 1200px; margin: 0 auto;">
-
-                <!-- Card 1 -->
-                <div class="appointment-card">
-                    <div class="app-time">09:00 AM</div>
-                    <div class="app-patient"><a href="#" class="patient-link"
-                            onclick="openPatientProfile('Juan Pérez')">Juan Pérez</a></div>
-                    <div class="app-treatment">Limpieza Dental</div>
-                    <button class="status-check" onclick="toggleCheck(this)"><i class="fa-solid fa-check"></i></button>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="appointment-card">
-                    <div class="app-time">10:30 AM</div>
-                    <div class="app-patient"><a href="#" class="patient-link"
-                            onclick="openPatientProfile('María López')">María López</a></div>
-                    <div class="app-treatment">Ortodoncia</div>
-                    <button class="status-check" onclick="toggleCheck(this)"><i class="fa-solid fa-check"></i></button>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="appointment-card">
-                    <div class="app-time">12:00 PM</div>
-                    <div class="app-patient"><a href="#" class="patient-link"
-                            onclick="openPatientProfile('Carlos Ruiz')">Carlos Ruiz</a></div>
-                    <div class="app-treatment">Resina</div>
-                    <button class="status-badge">Completada</button>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="appointment-card">
-                    <div class="app-time">04:00 PM</div>
-                    <div class="app-patient"><a href="#" class="patient-link"
-                            onclick="openPatientProfile('Ana Gómez')">Ana Gómez</a></div>
-                    <div class="app-treatment">Consulta General</div>
-                    <button class="status-badge">Completada</button>
-                </div>
-
-            </div>
+    <!-- Header -->
+    <header class="landing-header">
+        <div class="logo-container">
+            <i class="fa-solid fa-tooth"></i> DentalConnect
         </div>
+        <nav class="nav-links">
+            <a href="#features">Características</a>
+            <a href="#pricing">Precios</a>
+            <a href="login.html" class="cta-button"
+                style="padding: 10px 25px; margin-left: 20px; font-size: 0.9rem;">Acceder</a>
+        </nav>
+    </header>
 
-        <!-- SECCIÓN: PACIENTES -->
-        <div id="pacientes" class="section">
-            <h2 class="page-title">Pacientes</h2>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-                <input type="text" class="search-bar" placeholder="Buscar paciente...">
-                <div>
-                    <button class="ghost-btn" onclick="openFileExplorer()"><i class="fa-solid fa-folder-open"></i>
-                        Archivos</button>
-                    <button class="ghost-btn" onclick="openModal('modal-new-patient')"><i
-                            class="fa-solid fa-user-plus"></i> Nuevo Paciente</button>
-                </div>
-            </div>
-
-            <div class="dashboard-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Foto</th>
-                            <th>Nombre</th>
-                            <th>Teléfono</th>
-                            <th>Edad</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><img src="https://ui-avatars.com/api/?name=Juan+Perez&background=00b4d8&color=fff"
-                                    style="border-radius:50%; width:30px;"></td>
-                            <td>Juan Pérez</td>
-                            <td>555-123-4567</td>
-                            <td>32</td>
-                            <td><i class="fa-solid fa-eye action-icon" onclick="openPatientProfile('Juan Pérez')"></i>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><img src="https://ui-avatars.com/api/?name=Ana+Gomez&background=0077b6&color=fff"
-                                    style="border-radius:50%; width:30px;"></td>
-                            <td>Ana Gómez</td>
-                            <td>555-987-6543</td>
-                            <td>28</td>
-                            <td><i class="fa-solid fa-eye action-icon" onclick="openPatientProfile('Ana Gómez')"></i>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- ODONTOGRAMA INTEGRADO -->
-            <div class="odontograma-container">
-                <h3>Odontograma Digital <span style="font-size: 0.8rem; color: #888;">(Superior)</span></h3>
-                <div class="arcada" id="arcada-superior"></div>
-                <div class="controles">
-                    <button class="btn-tool" style="background-color: #ef4444;"
-                        onclick="setHerramienta('caries')">Caries</button>
-                    <button class="btn-tool" style="background-color: #3b82f6;"
-                        onclick="setHerramienta('realizado')">Realizado</button>
-                    <button class="btn-tool" style="background-color: #9ca3af;"
-                        onclick="setHerramienta('borrar')">Borrador</button>
-                </div>
-            </div>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="hero-title">El Futuro de la Gestión Dental está Aquí</h1>
+        <p class="hero-subtitle">Optimiza tu clínica, gestiona pacientes y aumenta tus ingresos con la plataforma SaaS
+            más intuitiva del mercado.</p>
+        <div style="display: flex; gap: 20px; justify-content: center;">
+            <a href="login.html" class="cta-button">Empezar Prueba Gratuita</a>
+            <a href="#demo" class="cta-button"
+                style="background: white; color: var(--primary-color); border: 2px solid var(--primary-color);">Ver
+                Demo</a>
         </div>
+        <div class="carousel-container">
+            <div class="slide">
 
-        <!-- SECCIÓN: TRATAMIENTOS -->
-        <div id="tratamientos" class="section">
-            <h2 class="page-title">Tratamientos</h2>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 20px;">
-                <input type="text" class="search-bar" placeholder="Buscar tratamiento...">
-                <button class="ghost-btn" onclick="openModal('modal-new-treatment')"><i class="fa-solid fa-plus"></i>
-                    Nuevo tratamiento</button>
-            </div>
-            <div class="dashboard-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Tratamiento</th>
-                            <th>Costo</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Limpieza Dental</td>
-                            <td>$800</td>
-                            <td><i class="fa-solid fa-trash" style="color:red; cursor:pointer;"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Ortodoncia</td>
-                            <td>$1000</td>
-                            <td><i class="fa-solid fa-trash" style="color:red; cursor:pointer;"></i></td>
-                        </tr>
-                        <tr>
-                            <td>Resina</td>
-                            <td>$600</td>
-                            <td><i class="fa-solid fa-trash" style="color:red; cursor:pointer;"></i></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- SECCIÓN: PUBLICIDAD -->
-        <div id="publicidad" class="section">
-            <h2 class="page-title">Publicidad y Promociones</h2>
-            <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
-                <button class="ghost-btn" onclick="openModal('modal-new-ad')"><i class="fa-solid fa-upload"></i>
-                    Nuevo</button>
-            </div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px;">
-                <!-- Simulated Ads -->
-                <div class="ad-card">
-                    <div class="ad-image-placeholder"><i class="fa-solid fa-image"></i></div>
-                    <p>Promoción Verano</p>
-                    <button class="ghost-btn delete-btn">Eliminar</button>
-                </div>
-                <div class="ad-card">
-                    <div class="ad-image-placeholder"><i class="fa-solid fa-image"></i></div>
-                    <p>Descuento Ortodoncia</p>
-                    <button class="ghost-btn delete-btn">Eliminar</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECCIÓN: CONFIGURACIÓN -->
-        <div id="configuracion" class="section">
-            <h2 class="page-title">Configuración</h2>
-            <div style="display: flex; gap: 40px; flex-wrap: wrap;">
-                <!-- Perfil Clínica -->
-                <div class="config-card">
-                    <h3>Perfil de la Clínica</h3>
-                    <p><strong>Nombre:</strong> Sakari Dental</p>
-                    <p><strong>Dirección:</strong> Calle 123, Col. Centro</p>
-                    <br>
-                    <button class="ghost-btn" onclick="openModal('modal-config-clinic')">Editar datos</button>
-                </div>
-
-                <!-- Perfil Especialista -->
-                <div class="config-card" style="text-align: center;">
-                    <img src="https://ui-avatars.com/api/?name=Dr+Sakari&background=random" class="profile-avatar">
-                    <h3>Perfil del Especialista</h3>
-                    <p><strong>Dr. Sakari</strong></p>
-                    <p>Especialidad: Ortodoncia</p>
-                    <p><small id="spec-cedula">Cédula: 12345678</small></p>
-                    <br>
-                    <button class="ghost-btn" onclick="openModal('modal-config-specialist')">Editar datos</button>
-                </div>
-
-                <!-- Gestión de Suscripción (SaaS Feature) -->
-                <div class="config-card"
-                    style="flex-basis: 100%; border: 2px solid var(--primary-color); background: linear-gradient(to right, #ffffff, #f0fbfc);">
-                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                        <div>
-                            <h3 style="color: var(--secondary-color); margin-bottom: 5px;"><i
-                                    class="fa-solid fa-crown"></i> Tu Suscripción: Plan Profesional</h3>
-                            <p style="margin: 0; color: #666;">Próxima renovación: 01 de Marzo, 2026</p>
-                        </div>
-                        <div style="text-align: right;">
-                            <span
-                                style="display: inline-block; padding: 5px 15px; background: #e0faff; color: var(--secondary-color); border-radius: 20px; font-weight: 600; font-size: 0.9rem; margin-bottom: 5px;">Activo</span>
-                            <br>
-                            <button class="ghost-btn"
-                                style="background: white; color: var(--primary-color); border: 1px solid var(--primary-color);">Gestionar
-                                Pagos</button>
-                            <button class="ghost-btn">Cambiar Plan</button>
-                        </div>
-                    </div>
-                    <hr style="border: 0; border-top: 1px solid rgba(0,0,0,0.05); margin: 20px 0;">
-                    <div style="display: flex; gap: 30px; font-size: 0.9rem; color: #555;">
-                        <div><i class="fa-solid fa-user-doctor" style="color: var(--primary-color);"></i> 3/3 Doctores
-                        </div>
-                        <div><i class="fa-solid fa-users" style="color: var(--primary-color);"></i> Pacientes Ilimitados
-                        </div>
-                        <div><i class="fa-solid fa-chart-pie" style="color: var(--primary-color);"></i> Reportes
-                            Avanzados</div>
+                <div class="item"
+                    style="background-image: url('https://images.unsplash.com/photo-1609840114035-3c981b782dfe?q=80&w=1000&auto=format&fit=crop');">
+                    <div class="content">
+                        <div class="name">Clínica Integral</div>
+                        <div class="des">En DentalConnect transformamos tu salud bucal con tecnología de punta y
+                            atención personalizada.</div>
+                        <button>Reservar Cita</button>
                     </div>
                 </div>
 
-                <!-- Gestión de Tokens -->
-                <div class="config-card" style="flex-basis: 100%;">
-                    <h3>Gestión de Tokens de Acceso</h3>
-                    <p>Genere tokens para nuevos usuarios (Doctores/Recepcionistas).</p>
-                    <div style="display:flex; gap:10px; margin-top:15px; align-items: center;">
-                        <select id="token-role" style="padding: 10px; border-radius: 8px; border: 1px solid #ddd;">
-                            <option value="doctor">Doctor</option>
-                            <option value="reception">Recepcionista</option>
-                        </select>
-                        <button class="ghost-btn" onclick="generateToken()">Generar Token</button>
-                    </div>
-                    <div class="token-list" style="margin-top: 20px;">
-                        <h4>Tokens Activos:</h4>
-                        <ul id="active-tokens-list" style="list-style: none; padding: 0; margin-top: 10px;">
-                            <!-- Tokens will be added here -->
-                            <li
-                                style="background: #f9f9f9; padding: 10px; border-radius: 6px; margin-bottom: 5px; display: flex; justify-content: space-between;">
-                                <span>DOC-8A7B9C (Doctor)</span>
-                                <i class="fa-solid fa-copy" style="cursor: pointer; color: var(--secondary-color);"
-                                    title="Copiar"></i>
-                            </li>
-                        </ul>
+                <div class="item"
+                    style="background-image: url('https://images.unsplash.com/photo-1598256989800-fe5f95da9787?q=80&w=1000&auto=format&fit=crop');">
+                    <div class="content">
+                        <div class="name">Ortodoncia</div>
+                        <div class="des">Alineación dental perfecta con brackets invisibles y sistemas convencionales de
+                            alta eficiencia.</div>
+                        <button>Ver Tratamientos</button>
                     </div>
                 </div>
-            </div>
-        </div>
 
-    </main>
-
-    <!-- --- GLASS MODALS (Updated to Mockup) --- -->
-
-    <!-- Modal: Nuevo Paciente (Updated Layout) -->
-    <div id="modal-new-patient" class="modal-overlay">
-        <div class="modal-glass modal-lg">
-            <button class="close-modal" onclick="closeModal('modal-new-patient')">&times;</button>
-            <h3 style="color: var(--secondary-color); font-weight: 700;">Nuevo Paciente</h3>
-            <form onsubmit="handleGhostSubmit(event, 'Paciente registrado')">
-                <div class="form-grid">
-                    <input type="text" class="modern-input" placeholder="Nombre(s)" required>
-                    <input type="text" class="modern-input" placeholder="Apellido Paterno" required>
-
-                    <input type="text" class="modern-input" placeholder="Apellido Materno" required>
-                    <!-- Improved Date Field with explicit label -->
-                    <div style="position: relative;">
-                        <label style="position: absolute; top: -18px; left: 2px; font-size: 0.75rem; color: #666;">Fecha
-                            de Nacimiento</label>
-                        <input type="date" class="modern-input" placeholder="dd/mm/aaaa" required>
+                <div class="item"
+                    style="background-image: url('https://images.unsplash.com/photo-1606811971618-4486d14f3f72?q=80&w=1000&auto=format&fit=crop');">
+                    <div class="content">
+                        <div class="name">Estética Dental</div>
+                        <div class="des">Diseño de sonrisa y blanqueamiento profesional para que vuelvas a sonreír con
+                            confianza.</div>
+                        <button>Saber Más</button>
                     </div>
-
-                    <select class="modern-input">
-                        <option value="">Sexo</option>
-                        <option value="M">Masculino</option>
-                        <option value="F">Femenino</option>
-                    </select>
-                    <input type="text" class="modern-input" placeholder="Teléfono" required>
-
-                    <input type="email" class="modern-input" placeholder="Correo electrónico">
-                    <!-- Spacer for alignment if needed, or just left blank as per grid -->
-                    <div></div>
-
-                    <input type="text" class="modern-input full-width" placeholder="Domicilio" class="full-width">
-
-                    <input type="text" class="modern-input" placeholder="Ocupación">
-                    <div style="display: flex; gap: 10px;">
-                        <!-- Blood Type ENUM Select -->
-                        <select class="modern-input" style="flex:1;">
-                            <option value="">Tipo de Sangre</option>
-                            <option value="A+">A+</option>
-                            <option value="A-">A-</option>
-                            <option value="B+">B+</option>
-                            <option value="B-">B-</option>
-                            <option value="AB+">AB+</option>
-                            <option value="AB-">AB-</option>
-                            <option value="O+">O+</option>
-                            <option value="O-">O-</option>
-                        </select>
-                    </div>
-
-                    <input type="number" class="modern-input" placeholder="Peso (kg)" step="0.1" style="width: 150px;">
                 </div>
 
-                <div style="text-align: right; margin-top: 20px;">
-                    <button type="submit" class="ghost-btn"
-                        style="padding: 12px 30px; border-radius: 8px;">Guardar</button>
+                <div class="item"
+                    style="background-image: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1000&auto=format&fit=crop');">
+                    <div class="content">
+                        <div class="name">Implantes</div>
+                        <div class="des">Soluciones fijas y duraderas con materiales biocompatibles de la más alta
+                            calidad.</div>
+                        <button>Consulta Gratis</button>
+                    </div>
                 </div>
-            </form>
-        </div>
-    </div>
 
-    <!-- Modal: Perfil del Paciente (Removed Calendar) -->
-    <div id="modal-patient-profile" class="modal-overlay">
-        <div class="modal-glass modal-xl">
-            <button class="close-modal" onclick="closeModal('modal-patient-profile')">&times;</button>
-            <div class="profile-header">
-                <img src="https://ui-avatars.com/api/?name=User&background=random" id="profile-img"
-                    class="profile-avatar-sm">
-                <h3 id="profile-name" style="margin: 0; padding-left: 10px;">Nombre del Paciente</h3>
+                <div class="item"
+                    style="background-image: url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=1000&auto=format&fit=crop');">
+                    <div class="content">
+                        <div class="name">Odontopediatría</div>
+                        <div class="des">Creamos experiencias positivas para los niños, cuidando sus dientes desde la
+                            infancia.</div>
+                        <button>Para Niños</button>
+                    </div>
+                </div>
+
+                <div class="item"
+                    style="background-image: url('https://images.unsplash.com/photo-1516574187841-693083f69802?q=80&w=1000&auto=format&fit=crop');">
+                    <div class="content">
+                        <div class="name">Diagnóstico 3D</div>
+                        <div class="des">Radiografía digital y escáner intraoral para diagnósticos precisos sin
+                            molestias.</div>
+                        <button>Tecnología</button>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="tabs">
-                <button class="tab-btn active" onclick="switchTab('tab-info')">Información General</button>
-                <!-- Calendar Removed -->
-                <button class="tab-btn" onclick="switchTab('tab-history')">Historial Clínico</button>
-            </div>
-
-            <div id="tab-info" class="tab-content active">
-                <div class="info-grid user-details-view">
-                    <p><strong>Fecha Nacimiento:</strong> <span id="p-dob">01/01/1990</span></p>
-                    <p><strong>Teléfono:</strong> <span id="p-phone">555-000-0000</span></p>
-                    <p><strong>Domicilio:</strong> <span id="p-address">Calle Falsa 123</span></p>
-                    <p><strong>Ocupación:</strong> <span id="p-job">Estudiante</span></p>
-                    <p><strong>Tipo Sangre:</strong> <span id="p-blood">O+</span></p>
-                    <p><strong>Peso:</strong> <span id="p-weight">70 kg</span></p>
-                    <p><strong>Alergias:</strong> <span id="p-allergies" style="color:red;">Ninguna</span></p>
-                    <p><strong>Enfermedades:</strong> <span id="p-diseases">Ninguna</span></p>
-                    <p><strong>Contacto Emergencia:</strong> <span id="p-emergency">Mamá (555-123-1234)</span></p>
-                </div>
-                <button class="ghost-btn mt-2">Editar Información</button>
-            </div>
-
-            <div id="tab-history" class="tab-content">
-                <p>Historial de tratamientos y notas clínicas...</p>
-                <div class="dashboard-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Tratamiento</th>
-                                <th>Doctor</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>10/01/2026</td>
-                                <td>Consulta General</td>
-                                <td>Dr. Sakari</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="carousel-buttons">
+                <button class="prev"><i class="fa-solid fa-arrow-left"></i></button>
+                <button class="next"><i class="fa-solid fa-arrow-right"></i></button>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Modal: Nuevo Tratamiento -->
-    <div id="modal-new-treatment" class="modal-overlay">
-        <div class="modal-glass">
-            <button class="close-modal" onclick="closeModal('modal-new-treatment')">&times;</button>
-            <h3>Nuevo Tratamiento / Cita</h3>
-            <form onsubmit="handleGhostSubmit(event, 'Cita agendada')">
-                <input type="text" class="modern-input" placeholder="Tratamiento / Motivo" required>
-                <input type="datetime-local" class="modern-input" required>
-                <input type="number" class="modern-input" placeholder="Costo Estimado ($)" required>
-                <button type="submit" class="ghost-btn" style="width:100%; margin-top:10px;">Agendar</button>
-            </form>
+    <!-- Features Section -->
+    <section id="features" class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-calendar-check"></i></div>
+            <h3>Agenda Inteligente</h3>
+            <p>Gestiona citas sin conflictos, envía recordatorios automáticos por WhatsApp y optimiza tus tiempos de
+                atención.</p>
         </div>
-    </div>
-
-    <!-- Modal: Nueva Publicidad -->
-    <div id="modal-new-ad" class="modal-overlay">
-        <div class="modal-glass">
-            <button class="close-modal" onclick="closeModal('modal-new-ad')">&times;</button>
-            <h3>Subir Publicidad</h3>
-            <div class="upload-area" onclick="document.getElementById('file-ad').click()">
-                <i class="fa-solid fa-cloud-arrow-up"></i>
-                <p>Click para subir imagen</p>
-                <input type="file" id="file-ad" hidden>
-            </div>
-            <button class="ghost-btn" style="width:100%; margin-top:10px;"
-                onclick="closeModal('modal-new-ad')">Guardar</button>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-file-medical"></i></div>
+            <h3>Expediente Clínico Digital</h3>
+            <p>Odontogramas interactivos, historial completo y notas de evolución seguras y accesibles desde cualquier
+                lugar.</p>
         </div>
-    </div>
-
-    <!-- Modal: Config Clínica -->
-    <div id="modal-config-clinic" class="modal-overlay">
-        <div class="modal-glass">
-            <button class="close-modal" onclick="closeModal('modal-config-clinic')">&times;</button>
-            <h3>Datos de la Clínica</h3>
-            <form onsubmit="handleGhostSubmit(event, 'Datos de clínica actualizados')">
-                <input type="text" class="modern-input" placeholder="Nombre de la clínica" value="Sakari Dental">
-                <input type="text" class="modern-input" placeholder="Dirección" value="Calle 123">
-                <input type="text" class="modern-input" placeholder="Teléfono">
-                <button type="submit" class="ghost-btn" style="width:100%; margin-top:10px;">Actualizar</button>
-            </form>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
+            <h3>Reportes Financieros</h3>
+            <p>Visualiza tus ingresos, tratamientos más rentables y crecimiento de pacientes con dashboards en tiempo
+                real.</p>
         </div>
-    </div>
+    </section>
 
-    <!-- Modal: Config Especialista (Tabbed) -->
-    <div id="modal-config-specialist" class="modal-overlay">
-        <div class="modal-glass modal-lg">
-            <button class="close-modal" onclick="closeModal('modal-config-specialist')">&times;</button>
-            <h3>Perfil del Especialista</h3>
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <h2 class="hero-title" style="font-size: 2.5rem;">Planes Flexibles</h2>
+        <p class="hero-subtitle">Elige el plan que mejor se adapte al tamaño de tu clínica.</p>
 
-            <div class="tabs">
-                <button class="tab-btn active" onclick="switchSpecTab('spec-personal')">Personal</button>
-                <button class="tab-btn" onclick="switchSpecTab('spec-profesional')">Profesional</button>
-                <button class="tab-btn" onclick="switchSpecTab('spec-cuenta')">Cuenta</button>
+        <div class="pricing-grid">
+            <!-- Free Plan -->
+            <div class="pricing-card">
+                <h3>Starter</h3>
+                <div class="price-tag">$0 <span>/mes</span></div>
+                <p>Perfecto para consultorios individuales.</p>
+                <ul style="list-style: none; padding: 20px 0; text-align: left; line-height: 2;">
+                    <li><i class="fa-solid fa-check" style="color: green; margin-right: 10px;"></i> 1 Doctor</li>
+                    <li><i class="fa-solid fa-check" style="color: green; margin-right: 10px;"></i> 50 Pacientes</li>
+                    <li><i class="fa-solid fa-check" style="color: green; margin-right: 10px;"></i> Agenda Básica</li>
+                </ul>
+                <a href="login.html" class="cta-button" style="background: #ccc; width: 100%;">Registrarse Gratis</a>
             </div>
 
-            <form onsubmit="handleGhostSubmit(event, 'Perfil actualizado correctamente')">
-                <!-- Tab: Personal -->
-                <div id="spec-personal" class="tab-content active">
-                    <div style="text-align: center; margin-bottom: 20px;">
-                        <div style="position: relative; display: inline-block;">
-                            <img src="https://ui-avatars.com/api/?name=Dr+Sakari&background=random"
-                                class="profile-avatar-sm"
-                                style="width: 100px; height: 100px; border: 4px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                            <div style="position: absolute; bottom: 0; right: 0; background: var(--primary-color); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer;"
-                                onclick="document.getElementById('profile-upload').click()">
-                                <i class="fa-solid fa-camera" style="font-size: 0.8rem;"></i>
-                            </div>
-                        </div>
-                        <input type="text" hidden id="profile-upload">
-                        <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">Dr. Sakari</p>
-                    </div>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label style="font-size: 0.9rem; font-weight: 500;">Nombre Completo</label>
-                            <input type="text" class="modern-input" value="Dr. Sakari" required>
-                        </div>
-                        <div class="form-group">
-                            <label style="font-size: 0.9rem; font-weight: 500;">Fecha de Nacimiento</label>
-                            <input type="date" class="modern-input">
-                        </div>
-                        <div class="form-group">
-                            <label style="font-size: 0.9rem; font-weight: 500;">Teléfono Personal</label>
-                            <input type="tel" class="modern-input">
-                        </div>
-                    </div>
-                </div>
+            <!-- Pro Plan -->
+            <div class="pricing-card featured">
+                <span class="badge-popular">Más Popular</span>
+                <h3>Profesional</h3>
+                <div class="price-tag">$29 <span>/mes</span></div>
+                <p>Para clínicas en crecimiento.</p>
+                <ul style="list-style: none; padding: 20px 0; text-align: left; line-height: 2;">
+                    <li><i class="fa-solid fa-check" style="color: var(--primary-color); margin-right: 10px;"></i> 3
+                        Doctores</li>
+                    <li><i class="fa-solid fa-check" style="color: var(--primary-color); margin-right: 10px;"></i>
+                        Pacientes Ilimitados</li>
+                    <li><i class="fa-solid fa-check" style="color: var(--primary-color); margin-right: 10px;"></i>
+                        Odontograma Avanzado</li>
+                    <li><i class="fa-solid fa-check" style="color: var(--primary-color); margin-right: 10px;"></i>
+                        Soporte Prioritario</li>
+                </ul>
+                <a href="login.html" class="cta-button" style="width: 100%;">Elegir Pro</a>
+            </div>
 
-                <!-- Tab: Profesional -->
-                <div id="spec-profesional" class="tab-content">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label style="font-size: 0.9rem; font-weight: 500;">Cédula Profesional</label>
-                            <input type="text" class="modern-input" placeholder="Número de cédula" value="12345678">
-                        </div>
-                        <div class="form-group">
-                            <label style="font-size: 0.9rem; font-weight: 500;">Especialidad</label>
-                            <select class="modern-input">
-                                <option>Ortodoncia</option>
-                                <option>Endodoncia</option>
-                                <option>Odontopediatría</option>
-                                <option>General</option>
-                            </select>
-                        </div>
-                        <div class="form-group full-width">
-                            <label style="font-size: 0.9rem; font-weight: 500;">Universidad de Egreso</label>
-                            <input type="text" class="modern-input" placeholder="Nombre de la Institución">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tab: Cuenta -->
-                <div id="spec-cuenta" class="tab-content">
-                    <div class="form-group">
-                        <label style="font-size: 0.9rem; font-weight: 500;">Correo Electrónico</label>
-                        <input type="email" class="modern-input" value="doctor@sakari.com">
-                    </div>
-                    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
-                    <h4 style="margin: 0 0 15px 0; font-size: 1rem; color: var(--secondary-color);">Cambiar Contraseña
-                    </h4>
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label style="font-size: 0.9rem; font-weight: 500;">Contraseña Actual</label>
-                            <input type="password" class="modern-input">
-                        </div>
-                        <div class="form-group">
-                            <label style="font-size: 0.9rem; font-weight: 500;">Nueva Contraseña</label>
-                            <input type="password" class="modern-input">
-                        </div>
-                    </div>
-                </div>
-
-                <div style="margin-top: 20px; text-align: right;">
-                    <button type="button" class="ghost-btn" style="background: #ccc; margin-right: 10px;"
-                        onclick="closeModal('modal-config-specialist')">Cancelar</button>
-                    <button type="submit" class="ghost-btn">Guardar Cambios</button>
-                </div>
-            </form>
+            <!-- Enterprise Plan -->
+            <div class="pricing-card">
+                <h3>Enterprise</h3>
+                <div class="price-tag">$99 <span>/mes</span></div>
+                <p>Para redes de clínicas y hospitales.</p>
+                <ul style="list-style: none; padding: 20px 0; text-align: left; line-height: 2;">
+                    <li><i class="fa-solid fa-check" style="color: green; margin-right: 10px;"></i> Usuarios Ilimitados
+                    </li>
+                    <li><i class="fa-solid fa-check" style="color: green; margin-right: 10px;"></i> Múltiples Sucursales
+                    </li>
+                    <li><i class="fa-solid fa-check" style="color: green; margin-right: 10px;"></i> API Access</li>
+                </ul>
+                <a href="#" class="cta-button" style="background: #333; width: 100%;">Contactar Ventas</a>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Script Externalizado -->
-    <script src="script.js"></script>
+    <!-- Footer -->
+    <footer>
+        <div class="logo-container" style="justify-content: center; color: white; margin-bottom: 20px;">
+            <i class="fa-solid fa-tooth"></i> DentalConnect
+        </div>
+        <p>&copy; 2026 DentalConnect. Todos los derechos reservados por Sakari.</p>
+        <div style="margin-top: 20px;">
+            <a href="#" style="color: #aaa; margin: 0 10px; text-decoration: none;"><i class="fab fa-facebook"></i></a>
+            <a href="#" style="color: #aaa; margin: 0 10px; text-decoration: none;"><i class="fab fa-twitter"></i></a>
+            <a href="#" style="color: #aaa; margin: 0 10px; text-decoration: none;"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Selección de elementos
+        let next = document.querySelector('.next');
+        let prev = document.querySelector('.prev');
+
+        function moveNext() {
+            let items = document.querySelectorAll('.item');
+            document.querySelector('.slide').appendChild(items[0]);
+        }
+
+        function movePrev() {
+            let items = document.querySelectorAll('.item');
+            document.querySelector('.slide').prepend(items[items.length - 1]);
+        }
+
+        // Función para mover al siguiente (el primero pasa al final)
+        next.addEventListener('click', moveNext);
+
+        // Función para mover al anterior (el último pasa al principio)
+        prev.addEventListener('click', movePrev);
+
+        // Auto-advance cada 10 segundos
+        setInterval(moveNext, 10000);
+    </script>
 </body>
 
 </html>
