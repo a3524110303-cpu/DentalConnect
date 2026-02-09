@@ -129,5 +129,5 @@ function finishRegistration() {
     alert('¡Registro Exitoso! Bienvenido a Dental Connect.');
     // Save minimal data to simulate login
     localStorage.setItem('role', 'admin'); // Assume admin for new registration
-    window.location.href = 'index.html';
+    window.location.href = 'dashboard.html';
 }
